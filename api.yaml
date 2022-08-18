@@ -1,0 +1,168 @@
+swagger: "2.0"
+info:
+  description: Mô tả về API...
+  version: 1.0.1
+  title: "Swagger for ecommerce"
+
+paths:
+  /api/products:
+    get:
+      summary: Lấy danh sách sản phẩm
+      responses: 
+        "200":
+          description: Lấy sản phẩm thành công
+        "400":
+          description: Không lấy được sản phẩm 
+    post:
+      summary: Thêm sản phẩm
+      responses:
+        "200":
+          description: Thêm sản phẩm thành công
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Bắt buộc phải có các trường giống bên dưới"
+        required: true
+        schema: 
+          $ref: "#/components/schemas/Product"
+  /api/product/{productId}:
+    delete:
+      summary: Xóa sản phẩm
+      responses:
+        "200":
+          description: Xóa sản phẩm thành công
+        "400":
+          description: Không xóa được
+      parameters:
+      - name: "productId"
+        in: "path"
+        description: "Pet id to delete"
+        required: true
+        type: "string"
+    get: 
+      summary: Lấy một sản phẩm
+      responses:
+        "200":
+          description: Lấy sản phẩm thành công
+        "400":
+          description: Không tìm thấy sản phẩm
+      parameters:
+      - name: "productId"
+        in: "path"
+        description: "Pet id to get"
+        required: true
+        type: "string"
+    put: 
+      summary: Cập nhật sản phẩm
+      responses:
+        "200":
+          description: Cập nhật sản phẩm thành công
+        "400":
+          description: Cập nhật sản phẩm không thành công
+      parameters:
+      - in: "body" 
+        name: "body"
+        description: "Bắt buộc phải có các trường giống bên dưới"
+        required: true
+        type: "string"
+        schema: 
+          $ref: "#/components/schemas/Product"
+  /api/news:
+    get:
+      summary: Lấy danh sách bài viết
+      responses: 
+        "200":
+          description: Lấy bài viết thành công
+        "400":
+          description: Không lấy được bài viết 
+    post:
+      summary: Thêm bài viết
+      responses:
+        "200":
+          description: Thêm bài viết thành công
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Bắt buộc phải có các trường giống bên dưới"
+        required: true
+        schema: 
+          $ref: "#/components/schemas/Product"
+  /api/news/{newsId}:
+    delete:
+      summary: Xóa bài viết
+      responses:
+        "200":
+          description: Xóa bài viết thành công
+        "400":
+          description: Không xóa được
+      parameters:
+      - name: "body"
+        in: "body"
+        description: "Pet id to delete"
+        required: true
+        type: "string"
+    get: 
+      summary: Lấy một bài viết
+      responses:
+        "200":
+          description: Lấy bài viết thành công
+        "400":
+          description: Không tìm thấy bài viết
+      parameters:
+      - name: "newsId"
+        in: "path"
+        description: "Pet id to get"
+        required: true
+        type: "string"
+    put: 
+      summary: Cập nhật bài viết
+      responses:
+        "200":
+          description: Cập nhật bài viết thành công
+        "400":
+          description: Cập nhật bài viết không thành công
+      parameters:
+      - in: "body" 
+        name: "body"
+        description: "Bắt buộc phải có các trường giống bên dưới"
+        required: true
+        type: "string"
+        schema: 
+          $ref: "#/components/schemas/News"
+
+         
+# Models
+components:
+  schemas:
+    Product:
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+          minLength: 5
+        regularPrice: 
+          type: string
+        salePrice: 
+          type: string
+        size: 
+          type: string
+        categoryPro:
+          type: string
+      required:
+        - name
+        - regularPrice
+        - size
+        - categoryPro
+    News:
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+          minLength: 5
+        categoryNews:
+          type: string
+      required:
+        - name
+        - price
